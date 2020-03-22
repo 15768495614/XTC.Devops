@@ -32,9 +32,9 @@ namespace XTC.Devops.ApiHost
                 options.DocInclusionPredicate((docName, description) => true);
             });
 
-            services.AddAbpDbContext<DataContext>(options =>
+            services.AddDbContext<DataContext>(options =>
             {
-                options.DbContextOptions.UseSqlServer(options.ConnectionString);
+                options.UseSqlServer(Configuration["ConnectionStrings:Default"]);
             });
 
             return services.AddAbp<XTCDevopsApiHostModule>();

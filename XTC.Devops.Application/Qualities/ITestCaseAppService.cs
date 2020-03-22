@@ -6,7 +6,8 @@ namespace XTC.Devops.Qualities
 {
     public interface ITestCaseAppService: IApplicationService
     {
-        Task<TestCaseDto> GetTestCase();
+        Task<TestCaseDto> InsertAsync(CreateTestCaseDto input);
+        Task<TestCaseDto[]> GetTestCase();
         Task<TestCaseDto> UpdateTestCase();
     }
 }

@@ -13,21 +13,26 @@ namespace XTC.Devops.Qualities
 {
     public class TestCaseAppService : ApplicationService, ITestCaseAppService
     {
-        private readonly IRepository<TestCase> _testCaseRepository;
+        private readonly IRepository< TestCase, Guid> _testCaseRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public TestCaseAppService(IRepository<TestCase> testCaseRepository, IUnitOfWorkManager unitOfWorkManager)
+        public TestCaseAppService(IRepository<TestCase, Guid> testCaseRepository, IUnitOfWorkManager unitOfWorkManager)
         {
             _testCaseRepository = testCaseRepository;
             _unitOfWorkManager = unitOfWorkManager;
         }
 
-        public async Task<TestCaseDto> GetTestCase()
+        public async Task<TestCaseDto> InsertAsync(CreateTestCaseDto input)
         {
-            var dto = new CreateTestCaseDto { Code = "TC123456", FunPoint = "功能点1" };
-            var entity = ObjectMapper.Map<TestCase>(dto);
+            var entity = ObjectMapper.Map<TestCase>(input);
             await _testCaseRepository.InsertAsync(entity);
             return ObjectMapper.Map<TestCaseDto>(entity);
+        }
+
+        public async Task<TestCaseDto[]> GetTestCase()
+        {
+            var list = await _testCaseRepository.GetAllListAsync();
+            return ObjectMapper.Map<TestCaseDto[]>(list);
         }
 
         public async Task<TestCaseDto> UpdateTestCase()

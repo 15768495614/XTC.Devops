@@ -1,4 +1,5 @@
-﻿using Abp.Modules;
+﻿using Abp.EntityFrameworkCore.Configuration;
+using Abp.Modules;
 using System;
 using System.Collections.Generic;
 using System.Text;
