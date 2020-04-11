@@ -9,7 +9,7 @@ namespace XTC.Devops.Qualities
     {
         Task<TestCaseDto> InsertAsync(CreateTestCaseDto input);
         Task DeleteAsync(Guid id);
-        Task<TestCaseDto> UpdateAsync(TestCaseEditDto input);
+        Task<TestCaseDto> UpdateAsync(TestCaseEditDto input);       
         Task<TestCaseDto[]> GetTestCasesAsync();
     }
 }

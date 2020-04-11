@@ -9,11 +9,19 @@ using Microsoft.OpenApi.Models;
 using XTC.Devops.Data;
 using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Linq;
+using Abp.Extensions;
 
 namespace XTC.Devops.ApiHost
 {
     public class Startup
     {
+        private const string _defaultCorsPolicyName = "localhost";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +32,23 @@ namespace XTC.Devops.ApiHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            //services.AddAuthentication("Bearer")
+            //    .AddJwtBearer("Bearer", options =>
+            //    {
+            //        options.Authority = "http://localhost:5000";
+            //        options.RequireHttpsMetadata = false;
+            //        options.Audience = "api";
+            //    });
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication("Bearer", options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "api";
+                    options.ApiSecret = "secret";
+                });
+
             services.AddControllers();
 
             services.AddSwaggerGen(options =>
@@ -32,10 +57,30 @@ namespace XTC.Devops.ApiHost
                 options.DocInclusionPredicate((docName, description) => true);
             });
 
+            //使用sql server
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:Default"]);
             });
+
+            //解决跨域问题
+            // Configure CORS for angular2 UI
+            services.AddCors(
+                options => options.AddPolicy(
+                    _defaultCorsPolicyName,
+                    builder => builder
+                        .WithOrigins(
+                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                            Configuration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                        )
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                )
+            );
 
             return services.AddAbp<XTCDevopsApiHostModule>();
         }
@@ -43,6 +88,8 @@ namespace XTC.Devops.ApiHost
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+
             app.UseAbp();
 
             app.UseSwagger();
@@ -58,7 +105,9 @@ namespace XTC.Devops.ApiHost
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //启用Authentication中间件
+            app.UseAuthentication();//身份认证
+            app.UseAuthorization();//授权
 
             app.UseEndpoints(endpoints =>
             {

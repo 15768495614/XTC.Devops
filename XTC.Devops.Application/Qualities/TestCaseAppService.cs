@@ -5,9 +5,11 @@ using XTC.Devops.Qualities.Dto;
 using Abp.Domain.Uow;
 using Abp.Domain.Repositories;
 using Abp.UI;
+using Abp.Authorization;
 
 namespace XTC.Devops.Qualities
 {
+    [AbpAuthorize]
     public class TestCaseAppService : ApplicationService, ITestCaseAppService
     {
         private readonly IRepository<TestCase, Guid> _testCaseRepository;

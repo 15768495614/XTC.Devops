@@ -5,9 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Startup.cs~RF1f9cdf35.TMP\**" />
+    <Content Remove="Startup.cs~RF1f9cdf35.TMP\**" />
+    <EmbeddedResource Remove="Startup.cs~RF1f9cdf35.TMP\**" />
+    <None Remove="Startup.cs~RF1f9cdf35.TMP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp" Version="5.1.0" />
     <PackageReference Include="Abp.AspNetCore" Version="5.1.0" />
     <PackageReference Include="Abp.EntityFrameworkCore" Version="5.1.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +28,8 @@
     <ProjectReference Include="..\XTC.Devops.Application\XTC.Devops.Application.csproj" />
     <ProjectReference Include="..\XTC.Devops.Data\XTC.Devops.Data.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 
 </Project>
