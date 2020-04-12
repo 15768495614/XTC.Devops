@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AbpAuthorizationHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Abp" Version="5.1.0" />
     <PackageReference Include="Abp.AutoMapper" Version="5.1.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />

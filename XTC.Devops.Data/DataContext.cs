@@ -1,12 +1,9 @@
 ﻿using Abp.EntityFrameworkCore;
-using Abp.Events.Bus.Entities;
 using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using XTC.Devops.Qualities;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace XTC.Devops.Data
 {
@@ -14,9 +11,15 @@ namespace XTC.Devops.Data
     {
         public DbSet<TestCase> TestCases { get; set; }
 
-        public DataContext(DbContextOptions options) : base(options)
-        {
+        private readonly IHttpContextAccessor _accessor;
+        private readonly string _userCode;
+        private readonly string _userName;
 
+        public DataContext(DbContextOptions options, IHttpContextAccessor accessor) : base(options)
+        {
+            _accessor = accessor;
+            _userCode = _accessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserCode".ToLowerInvariant())?.Value;
+            _userName = _accessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserName".ToLowerInvariant())?.Value;
         }
 
         protected override void SetCreationAuditProperties(object entityAsObj, long? userId)
@@ -26,8 +29,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpCreationAudited>();
                 if (entity.CreatorUserCode.IsNullOrEmpty() || entity.CreateByUser.IsNullOrEmpty())
                 {
-                    entity.CreatorUserCode = "1|K0000221";
-                    entity.CreateByUser = "梁灿林";
+                    entity.CreatorUserCode = _userCode;
+                    entity.CreateByUser = _userName;
                 }
             }
             base.SetCreationAuditProperties(entityAsObj, userId);
@@ -40,8 +43,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpDeletionAudited>();
                 if (entity.DeleterUserCode.IsNullOrEmpty() || entity.DeleteByUser.IsNullOrEmpty())
                 {
-                    entity.DeleterUserCode = "1|K0000221";
-                    entity.DeleteByUser = "梁灿林";
+                    entity.DeleterUserCode = _userCode;
+                    entity.DeleteByUser = _userName;
                 }
             }
             base.SetDeletionAuditProperties(entityAsObj, userId);
@@ -54,8 +57,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpModificationAudited>();
                 if (entity.LastModifierUserCode.IsNullOrEmpty() || entity.LastModifyByUser.IsNullOrEmpty())
                 {
-                    entity.LastModifierUserCode = "1|K0000221";
-                    entity.LastModifyByUser = "梁灿林";
+                    entity.LastModifierUserCode = _userCode;
+                    entity.LastModifyByUser = _userName;
                 }
             }
             base.SetModificationAuditProperties(entityAsObj, userId);

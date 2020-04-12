@@ -7,12 +7,7 @@ using Abp.AspNetCore;
 using System;
 using Microsoft.OpenApi.Models;
 using XTC.Devops.Data;
-using Abp.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using System.Linq;
 using Abp.Extensions;
 
