@@ -1,8 +1,5 @@
 ﻿using Abp.AutoMapper;
 using Abp.Modules;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace XTC.Devops.Application
 {

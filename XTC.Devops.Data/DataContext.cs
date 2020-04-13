@@ -3,7 +3,7 @@ using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
 using XTC.Devops.Qualities;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
+using Abp.Runtime.Session;
 
 namespace XTC.Devops.Data
 {
@@ -11,15 +11,15 @@ namespace XTC.Devops.Data
     {
         public DbSet<TestCase> TestCases { get; set; }
 
-        private readonly IHttpContextAccessor _accessor;
+        private readonly IPrincipalAccessor _accessor;
         private readonly string _userCode;
         private readonly string _userName;
 
-        public DataContext(DbContextOptions options, IHttpContextAccessor accessor) : base(options)
+        public DataContext(DbContextOptions options, IPrincipalAccessor accessor) : base(options)
         {
             _accessor = accessor;
-            _userCode = _accessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserCode".ToLowerInvariant())?.Value;
-            _userName = _accessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserName".ToLowerInvariant())?.Value;
+            _userCode = _accessor.Principal.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserCode".ToLowerInvariant())?.Value;
+            _userName = _accessor.Principal.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserName".ToLowerInvariant())?.Value;
         }
 
         protected override void SetCreationAuditProperties(object entityAsObj, long? userId)
