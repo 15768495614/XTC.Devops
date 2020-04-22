@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XTC.Devops.Qualities.Dto
+namespace XTC.Devops.TestPlans.Dto
 {
     public class CreateTestCaseDto
     {

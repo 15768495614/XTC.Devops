@@ -1,9 +1,11 @@
 ﻿using Abp.Domain.Entities;
+using Abp.AutoMapper;
 using System;
 
-namespace XTC.Devops.Qualities.Dto
+namespace XTC.Devops.TestPlans.Dto
 {
-    public class TestCaseDto : Entity<Guid>
+    [AutoMapTo(typeof(TestCase))]
+    public class TestCaseEditDto : Entity<Guid>
     {
         public string Code { get; set; }
         public string FunPoint { get; set; }

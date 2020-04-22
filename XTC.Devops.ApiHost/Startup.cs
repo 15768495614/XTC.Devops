@@ -27,14 +27,6 @@ namespace XTC.Devops.ApiHost
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication("Bearer")
-            //    .AddJwtBearer("Bearer", options =>
-            //    {
-            //        options.Authority = "http://localhost:5000";
-            //        options.RequireHttpsMetadata = false;
-            //        options.Audience = "api";
-            //    });
-
             services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication("Bearer", options =>
                 {

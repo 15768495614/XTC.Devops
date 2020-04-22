@@ -13,8 +13,6 @@ namespace XTC.Devops
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(typeof(XTCDevopsApiHostModule).Assembly);
-
-            Configuration.Modules.AbpAspNetCore().CreateControllersForAppServices(typeof(XTCDevopsApplicationModule).Assembly);
         }
     }
 }

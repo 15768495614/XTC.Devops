@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace XTC.Devops.Qualities.Dto
+namespace XTC.Devops.TestPlans.Dto
 {
     public class TestCaseMapProfile : Profile
     {

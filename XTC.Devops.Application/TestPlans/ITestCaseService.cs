@@ -1,11 +1,11 @@
 ﻿using Abp.Application.Services;
 using System;
 using System.Threading.Tasks;
-using XTC.Devops.Qualities.Dto;
+using XTC.Devops.TestPlans.Dto;
 
-namespace XTC.Devops.Qualities
+namespace XTC.Devops.TestPlans
 {
-    public interface ITestCaseAppService : IApplicationService
+    public interface ITestCaseService : IApplicationService
     {
         Task<TestCaseDto> InsertAsync(CreateTestCaseDto input);
         Task DeleteAsync(Guid id);

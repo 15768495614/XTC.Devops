@@ -1,21 +1,21 @@
 ﻿using Abp.Application.Services;
 using System;
 using System.Threading.Tasks;
-using XTC.Devops.Qualities.Dto;
+using XTC.Devops.TestPlans.Dto;
 using Abp.Domain.Uow;
 using Abp.Domain.Repositories;
 using Abp.UI;
 using Abp.Authorization;
 
-namespace XTC.Devops.Qualities
+namespace XTC.Devops.TestPlans
 {
     [AbpAuthorize]
-    public class TestCaseAppService : ApplicationService, ITestCaseAppService
+    public class TestCaseService : ApplicationService, ITestCaseService
     {
         private readonly IRepository<TestCase, Guid> _testCaseRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public TestCaseAppService(IRepository<TestCase, Guid> testCaseRepository
+        public TestCaseService(IRepository<TestCase, Guid> testCaseRepository
             , IUnitOfWorkManager unitOfWorkManager)
         {
             _testCaseRepository = testCaseRepository;
