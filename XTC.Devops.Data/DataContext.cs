@@ -2,8 +2,6 @@
 using Abp.Extensions;
 using Microsoft.EntityFrameworkCore;
 using XTC.Devops.TestPlans;
-using System.Linq;
-using Abp.Runtime.Session;
 using Abp.Reflection.Extensions;
 using XTC.Devops.Projects;
 
@@ -20,21 +18,11 @@ namespace XTC.Devops.Data
         public DbSet<Demand> Demands { get; set; }
         #endregion
 
-        private readonly IPrincipalAccessor _accessor;
-        private readonly string _userCode;
-        private readonly string _userName;
+        public UserClaims.IUserService UserService { get; set; }
 
-        //用于迁移数据
-        //public DataContext(DbContextOptions options) : this(options, null)
-        //{
-
-        //}
-
-        public DataContext(DbContextOptions<DataContext> options, IPrincipalAccessor accessor) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            _accessor = accessor;
-            _userCode = _accessor?.Principal.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserCode".ToLowerInvariant())?.Value;
-            _userName = _accessor?.Principal.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserName".ToLowerInvariant())?.Value;
+
         }
 
         protected override void SetCreationAuditProperties(object entityAsObj, long? userId)
@@ -44,8 +32,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpCreationAudited>();
                 if (entity.CreatorUserCode.IsNullOrEmpty() || entity.CreateByUser.IsNullOrEmpty())
                 {
-                    entity.CreatorUserCode = _userCode;
-                    entity.CreateByUser = _userName;
+                    entity.CreatorUserCode = UserService.UserCode;
+                    entity.CreateByUser = UserService.UserName;
                 }
             }
             base.SetCreationAuditProperties(entityAsObj, userId);
@@ -58,8 +46,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpDeletionAudited>();
                 if (entity.DeleterUserCode.IsNullOrEmpty() || entity.DeleteByUser.IsNullOrEmpty())
                 {
-                    entity.DeleterUserCode = _userCode;
-                    entity.DeleteByUser = _userName;
+                    entity.DeleterUserCode = UserService.UserCode;
+                    entity.DeleteByUser = UserService.UserName;
                 }
             }
             base.SetDeletionAuditProperties(entityAsObj, userId);
@@ -72,8 +60,8 @@ namespace XTC.Devops.Data
                 var entity = entityAsObj.As<IAbpModificationAudited>();
                 if (entity.LastModifierUserCode.IsNullOrEmpty() || entity.LastModifyByUser.IsNullOrEmpty())
                 {
-                    entity.LastModifierUserCode = _userCode;
-                    entity.LastModifyByUser = _userName;
+                    entity.LastModifierUserCode = UserService.UserCode;
+                    entity.LastModifyByUser = UserService.UserName;
                 }
             }
             base.SetModificationAuditProperties(entityAsObj, userId);

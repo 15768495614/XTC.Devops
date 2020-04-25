@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTC.Devops.ApiHost", "XTC.Devops.ApiHost\XTC.Devops.ApiHost.csproj", "{F6393831-2446-4020-AEF1-7E2580B9E151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTC.Devops.ApiHost", "XTC.Devops.ApiHost\XTC.Devops.ApiHost.csproj", "{F6393831-2446-4020-AEF1-7E2580B9E151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTC.Devops.Application", "XTC.Devops.Application\XTC.Devops.Application.csproj", "{1E5E56F1-E481-4DF3-9EBA-FFCE474D7731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTC.Devops.Application", "XTC.Devops.Application\XTC.Devops.Application.csproj", "{1E5E56F1-E481-4DF3-9EBA-FFCE474D7731}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTC.Devops.Core", "XTC.Devops.Core\XTC.Devops.Core.csproj", "{7DD6098E-0489-49F0-AF5D-8AE22E2407D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTC.Devops.Core", "XTC.Devops.Core\XTC.Devops.Core.csproj", "{7DD6098E-0489-49F0-AF5D-8AE22E2407D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTC.Devops.Data", "XTC.Devops.Data\XTC.Devops.Data.csproj", "{75C8479B-A797-4835-AE07-CECC7933A434}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTC.Devops.Data", "XTC.Devops.Data\XTC.Devops.Data.csproj", "{75C8479B-A797-4835-AE07-CECC7933A434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTC.Devops.Common", "XTC.Devops.Common\XTC.Devops.Common.csproj", "{B4248BA6-E2E4-4C73-AFA7-85D620E931FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{75C8479B-A797-4835-AE07-CECC7933A434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C8479B-A797-4835-AE07-CECC7933A434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C8479B-A797-4835-AE07-CECC7933A434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4248BA6-E2E4-4C73-AFA7-85D620E931FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4248BA6-E2E4-4C73-AFA7-85D620E931FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4248BA6-E2E4-4C73-AFA7-85D620E931FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4248BA6-E2E4-4C73-AFA7-85D620E931FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

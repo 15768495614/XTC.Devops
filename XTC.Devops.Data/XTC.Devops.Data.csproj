@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XTC.Devops.Common\XTC.Devops.Common.csproj" />
     <ProjectReference Include="..\XTC.Devops.Core\XTC.Devops.Core.csproj" />
   </ItemGroup>
 

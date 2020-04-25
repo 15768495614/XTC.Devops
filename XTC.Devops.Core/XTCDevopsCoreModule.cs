@@ -1,7 +1,5 @@
 ﻿using Abp.Modules;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Abp.Reflection.Extensions;
 
 namespace XTC.Devops
 {
@@ -9,7 +7,7 @@ namespace XTC.Devops
     {
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(XTCDevopsCoreModule).Assembly);
+            IocManager.RegisterAssemblyByConvention(typeof(XTCDevopsCoreModule).GetAssembly());
         }
     }
 }
