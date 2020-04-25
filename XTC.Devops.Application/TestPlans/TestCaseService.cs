@@ -5,21 +5,16 @@ using XTC.Devops.TestPlans.Dto;
 using Abp.Domain.Uow;
 using Abp.Domain.Repositories;
 using Abp.UI;
-using Abp.Authorization;
 
 namespace XTC.Devops.TestPlans
 {
-    [AbpAuthorize]
     public class TestCaseService : ApplicationService, ITestCaseService
     {
         private readonly IRepository<TestCase, Guid> _testCaseRepository;
-        private readonly IUnitOfWorkManager _unitOfWorkManager;
 
-        public TestCaseService(IRepository<TestCase, Guid> testCaseRepository
-            , IUnitOfWorkManager unitOfWorkManager)
+        public TestCaseService(IRepository<TestCase, Guid> testCaseRepository)
         {
             _testCaseRepository = testCaseRepository;
-            _unitOfWorkManager = unitOfWorkManager;
         }
 
         public async Task<TestCaseDto> InsertAsync(CreateTestCaseDto input)
