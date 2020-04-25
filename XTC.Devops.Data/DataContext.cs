@@ -30,7 +30,7 @@ namespace XTC.Devops.Data
 
         //}
 
-        public DataContext(DbContextOptions options, IPrincipalAccessor accessor) : base(options)
+        public DataContext(DbContextOptions<DataContext> options, IPrincipalAccessor accessor) : base(options)
         {
             _accessor = accessor;
             _userCode = _accessor?.Principal.Claims.FirstOrDefault(x => x.Type.ToLowerInvariant() == "UserCode".ToLowerInvariant())?.Value;

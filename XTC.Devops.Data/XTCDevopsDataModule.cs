@@ -1,12 +1,9 @@
-﻿using Abp.EntityFrameworkCore.Configuration;
+﻿using Abp.EntityFrameworkCore;
 using Abp.Modules;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace XTC.Devops.Data
 {
-    [DependsOn(typeof(XTCDevopsCoreModule))]
+    [DependsOn(typeof(AbpEntityFrameworkCoreModule), typeof(XTCDevopsCoreModule))]
     public class XTCDevopsDataModule : AbpModule
     {
         public override void Initialize()

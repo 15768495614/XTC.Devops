@@ -22,5 +22,12 @@ namespace XTC.Devops.Projects
         /// 描述
         /// </summary>
         public string Describe { get; set; }
+
+        /// <summary>
+        /// 负责人
+        /// </summary>
+        public string OwnerName { get; set; }
+
+        public string OwnerCode { get; set; }
     }
 }

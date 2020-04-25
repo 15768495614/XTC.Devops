@@ -6,10 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Abp.AspNetCore;
 using System;
 using Microsoft.OpenApi.Models;
-using XTC.Devops.Data;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Abp.Extensions;
+using XTC.Devops.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace XTC.Devops.ApiHost
 {
@@ -44,7 +44,6 @@ namespace XTC.Devops.ApiHost
                 options.DocInclusionPredicate((docName, description) => true);
             });
 
-            // π”√sql server
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:Default"]);
