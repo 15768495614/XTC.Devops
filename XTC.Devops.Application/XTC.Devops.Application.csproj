@@ -5,8 +5,16 @@
     <RootNamespace>XTC.Devops</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>F:\BaiduNetdiskDownload\devops\XTC.Devops\XTC.Devops.Application\XTC.Devops.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="AbpAuthorizationHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="XTC.Devops.Application.xml" />
   </ItemGroup>
 
   <ItemGroup>

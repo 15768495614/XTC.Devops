@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace XTC.Devops.ApiHost.Controllers
 {
+    /// <summary>
+    /// 全局控制器
+    /// </summary>
     [AbpAuthorize]
     [ApiController]
-    public class BaseController : AbpController
+    public abstract class BaseController : AbpController
     {
         
     }

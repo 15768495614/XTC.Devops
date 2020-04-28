@@ -13,18 +13,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace XTC.Devops.ApiHost
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
         private const string _defaultCorsPolicyName = "localhost";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// ≈‰÷√–≈œ¢
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication("Bearer")
@@ -42,6 +56,9 @@ namespace XTC.Devops.ApiHost
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "XTCDevops API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
+                var paths = System.IO.Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.xml");
+                foreach (var path in paths)
+                    options.IncludeXmlComments(path);
             });
 
             services.AddDbContext<DataContext>(options =>
@@ -71,7 +88,11 @@ namespace XTC.Devops.ApiHost
             return services.AddAbp<XTCDevopsApiHostModule>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!

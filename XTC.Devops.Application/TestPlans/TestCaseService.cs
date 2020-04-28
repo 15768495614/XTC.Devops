@@ -8,15 +8,27 @@ using Abp.UI;
 
 namespace XTC.Devops.TestPlans
 {
+    /// <summary>
+    /// 测试用例服务
+    /// </summary>
     public class TestCaseService : ApplicationService, ITestCaseService
     {
         private readonly IRepository<TestCase, Guid> _testCaseRepository;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="testCaseRepository"></param>
         public TestCaseService(IRepository<TestCase, Guid> testCaseRepository)
         {
             _testCaseRepository = testCaseRepository;
         }
 
+        /// <summary>
+        /// 创建
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<TestCaseDto> InsertAsync(CreateTestCaseDto input)
         {
             var entity = ObjectMapper.Map<TestCase>(input);
@@ -24,6 +36,11 @@ namespace XTC.Devops.TestPlans
             return ObjectMapper.Map<TestCaseDto>(entity);
         }
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task DeleteAsync(Guid id)
         {
             var entity = await _testCaseRepository.FirstOrDefaultAsync(x => x.Id == id);
@@ -31,6 +48,11 @@ namespace XTC.Devops.TestPlans
             await _testCaseRepository.DeleteAsync(entity);
         }
 
+        /// <summary>
+        /// 更新
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<TestCaseDto> UpdateAsync(TestCaseEditDto input)
         {
             var oldEntity = await _testCaseRepository.FirstOrDefaultAsync(x => x.Id == input.Id);
@@ -40,6 +62,10 @@ namespace XTC.Devops.TestPlans
             return ObjectMapper.Map<TestCaseDto>(entity);
         }
 
+        /// <summary>
+        /// 列表
+        /// </summary>
+        /// <returns></returns>
         public async Task<TestCaseDto[]> GetTestCasesAsync()
         {
             var list = await _testCaseRepository.GetAllListAsync();

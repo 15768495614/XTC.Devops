@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XTC.Devops.Application</name>
+    </assembly>
+    <members>
+        <member name="T:XTC.Devops.TestPlans.Dto.CreateTestCaseDto">
+            <summary>
+            创建测试用例Dto
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.CreateTestCaseDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.CreateTestCaseDto.FunPoint">
+            <summary>
+            功能点
+            </summary>
+        </member>
+        <member name="T:XTC.Devops.TestPlans.Dto.TestCaseDto">
+            <summary>
+            测试用例详情Dto
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.TestCaseDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.TestCaseDto.FunPoint">
+            <summary>
+            功能点
+            </summary>
+        </member>
+        <member name="T:XTC.Devops.TestPlans.Dto.TestCaseEditDto">
+            <summary>
+            更新测试用例Dto
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.TestCaseEditDto.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:XTC.Devops.TestPlans.Dto.TestCaseEditDto.FunPoint">
+            <summary>
+            功能点
+            </summary>
+        </member>
+        <member name="T:XTC.Devops.TestPlans.Dto.TestCaseMapProfile">
+            <summary>
+            测试用例映射文件
+            </summary>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.Dto.TestCaseMapProfile.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:XTC.Devops.TestPlans.ITestCaseService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.ITestCaseService.InsertAsync(XTC.Devops.TestPlans.Dto.CreateTestCaseDto)">
+            <summary>
+            创建
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.ITestCaseService.DeleteAsync(System.Guid)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.ITestCaseService.UpdateAsync(XTC.Devops.TestPlans.Dto.TestCaseEditDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.ITestCaseService.GetTestCasesAsync">
+            <summary>
+            列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:XTC.Devops.TestPlans.TestCaseService">
+            <summary>
+            测试用例服务
+            </summary>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.TestCaseService.#ctor(Abp.Domain.Repositories.IRepository{XTC.Devops.TestPlans.TestCase,System.Guid})">
+            <summary>
+            
+            </summary>
+            <param name="testCaseRepository"></param>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.TestCaseService.InsertAsync(XTC.Devops.TestPlans.Dto.CreateTestCaseDto)">
+            <summary>
+            创建
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.TestCaseService.DeleteAsync(System.Guid)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.TestCaseService.UpdateAsync(XTC.Devops.TestPlans.Dto.TestCaseEditDto)">
+            <summary>
+            更新
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XTC.Devops.TestPlans.TestCaseService.GetTestCasesAsync">
+            <summary>
+            列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:XTC.Devops.Application.XTCDevopsApplicationModule">
+            <summary>
+            Application模块
+            </summary>
+        </member>
+        <member name="M:XTC.Devops.Application.XTCDevopsApplicationModule.Initialize">
+            <summary>
+            初始化
+            </summary>
+        </member>
+    </members>
+</doc>
